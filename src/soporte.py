@@ -1,13 +1,17 @@
+# Tratamiento de datos
 import pandas as pd 
 from IPython.display import display
 
+# Visualización de librerías
 import seaborn as sns
 import matplotlib.pyplot as plt
 
 
+# ------------------------------FUNCIONES------------------------------
 
+# Función para un análisis rápido
 def analisis_rapido (df, n=3):
-    """Función que genera un análisis rápido del DataFrame
+    """Función que genera un análisis rápido del DataFrame.
 
     Args:
         df: Dataframe
@@ -24,8 +28,9 @@ def analisis_rapido (df, n=3):
 
 
 
+# Función para un análisis de columnas
 def columnas_df(df):
-    """Función que nos proporciona un análisis de las columnas del DataFrame
+    """Función que nos proporciona un análisis de las columnas del DataFrame.
 
     Args:
         df: DataFrame
@@ -36,7 +41,6 @@ def columnas_df(df):
 
     print("Información básica de las columnas:\n")
     df.info()
-
 
     col_num = df.select_dtypes(include='number').columns
     print("\nVariables numéricas:\n\n", col_num)
@@ -50,12 +54,9 @@ def columnas_df(df):
 
 
 
-
-
-
+# Función para mostrar gráficos de barras de columnas categóricas
 def graficos_categoricos(df, rotar_columnas=None, angulo=45):
-    """
-    Función que grafica todas las columnas categóricas de un DataFrame
+    """Función que grafica todas las columnas categóricas de un DataFrame.
     
     Args:
         df: DataFrame
