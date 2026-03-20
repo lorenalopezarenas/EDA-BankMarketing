@@ -54,6 +54,23 @@ def columnas_df(df):
 
 
 
+# Función para mostrar gráficos de bigotes de las columnas numéricas
+def boxplots(df):
+    """Función que grafica todas las columnas numéricas de un DataFrame.
+
+    Args:
+        df: DataFame
+    """
+    col_num = df.select_dtypes(include='number').columns
+
+    for col in col_num:
+        plt.figure(figsize=(6, 1))
+        sns.boxplot(x=df[col], color="darkmagenta")
+        plt.title(col)
+        plt.show()
+
+
+
 # Función para mostrar gráficos de barras de columnas categóricas
 def graficos_categoricos(df, rotar_columnas=None, angulo=45):
     """Función que grafica todas las columnas categóricas de un DataFrame.
@@ -70,7 +87,7 @@ def graficos_categoricos(df, rotar_columnas=None, angulo=45):
     for col in col_cat:
         num_categories = df[col].nunique()
         width = max(4, num_categories)
-        height = 3
+        height = 2
         plt.figure(figsize=(width, height))
         
         sns.countplot(x=col, data=df, order=df[col].value_counts().index, color='darkmagenta')
@@ -86,4 +103,41 @@ def graficos_categoricos(df, rotar_columnas=None, angulo=45):
 
 
 
+def number_vs_target(df, target):
+    col_num = df.select_dtypes(include='number').columns 
+    
+    for col in col_num:
+            
+        plt.figure(figsize=(6,4))
+        sns.boxplot(x=target, y=col, data=df, color='darkmagenta')
+        plt.title(f"{col} vs {target}")
+        plt.show()
 
+
+
+def category_vs_target(df, target):
+
+     col_cat = df.select_dtypes(include=['category', 'str'])
+
+     for col in col_cat:
+          if col == target: 
+               continue
+          # Contamos los valores de cada categoría solo para 'yes'
+          yes_counts = df[df[target]=='yes'][col].value_counts()
+          # Ordenamos las categorías de mayor a menor según 'yes'
+          order_categories = yes_counts.index.tolist()
+     
+          # Ajustamos las gráficas al número de categorías
+          num_categories = df[col].nunique()
+          width = max(4, num_categories)
+          height = 2
+          plt.figure(figsize=(width, height))
+
+          # Definimos un palette personalizado 
+          palette_custom = {'no': 'darkgray', 'yes': 'darkmagenta'}
+
+          # Creamos los gráficos 
+          sns.countplot(x=col, hue=target, data=df, palette=palette_custom, order=order_categories)
+          plt.xticks(rotation=45)
+          plt.title(f"{col} vs {target}")
+          plt.show()
