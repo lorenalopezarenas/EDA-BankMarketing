@@ -9,7 +9,61 @@ import matplotlib.pyplot as plt
 
 # ------------------------------FUNCIONES------------------------------
 
-# Función para un análisis rápido
+# -------------Función eda_preliminar-------------
+def eda_preliminar(df):
+    """Realiza un análisis exploratorio preliminar sobre un DataFrame dado.
+
+       Este análisis incluye:
+       - Muestra de las 3 primeras y últimas filas.
+       - Muestra de 3 filas aleatorias.
+       - Dimensión del DataFrame.
+       - Información general del DataFrame (nulos, tipos de datos, etc.).
+       - Valores nulos por columna (tanto en términos absolutos como relativos).
+       - Conteo de valores duplicados.
+       - Listado del nombre de las columnas.
+       - Estadísticas descriptivas de las variables numéricas.
+       - Estadísticas descriptivas de las variables categóricas.
+
+    Args:
+        df: DataFrame a analizar
+    """
+
+    print('\n\033[1m👀 Visualización de las primeras y últimas filas\033[0m\n')
+    display(df.head(3))
+    display(df.tail(3))
+
+    print('\n\033[1m🎲 Visualización de filas aleatorias\033[0m\n')
+    display(df.sample(3))
+
+    print('\n\n\033[1m📏 Dimensión del DataFrame\033[0m\n')
+    print(f'Número de filas del DataFrame: {df.shape[0]}')
+    print(f'Número de columnas del DataFrame: {df.shape[1]}')
+    
+    print('\n\n\033[1m🧾 Información general\033[0m\n')
+    df.info()
+
+    print('\n\n\033[1m❌ Detección de nulos\033[0m\n')
+    nulos = df.isnull().sum()
+    print(f"El número de valores nulos de cada columna es: \n{nulos[nulos > 0]}\n")
+
+    nulos_porcentaje = df.isnull().sum() / (df.shape[0])*100
+    print(f"El porcentaje de valores nulos de cada columna es: \n{nulos_porcentaje[nulos_porcentaje > 0].round(2)}")
+
+    print('\n\n\033[1m🔁 Detección de duplicados\033[0m\n')
+    print(f'El número de duplicados del dataset es: {df.duplicated().sum()}')
+
+    print('\n\n\033[1m🏷️ Nombres de las columnas\033[0m\n')
+    display(df.columns)
+
+    print('\n\n\033[1m🔢 Estadísticas descriptivas de las variables numéricas\033[0m\n')
+    display(df.describe().round(2).T)
+
+    print('\n\n\033[1m🔡 Estadísticas descriptivas de las variables categóricas\033[0m\n')
+    display(df.describe(include=['category', 'str']).T)
+
+#------------------------------------------------------------------------------------------
+
+# -------------Función para un análisis rápido-------------
 def analisis_rapido (df, n=3):
     """Función que genera un análisis rápido del DataFrame.
 
@@ -21,14 +75,14 @@ def analisis_rapido (df, n=3):
     display(df.head(n))
 
     print(f'\nLa información básica del Dataframe es la siguiente:')
-    display(df.info())
+    df.info()
 
     print(f'\nEl número de nulos por columna del Dataframe es:')
     display(df.isnull().sum())
 
+#------------------------------------------------------------------------------------------
 
-
-# Función para un análisis de columnas
+# -------------Función para un análisis de columnas-------------
 def columnas_df(df):
     """Función que nos proporciona un análisis de las columnas del DataFrame.
 
@@ -52,9 +106,9 @@ def columnas_df(df):
     print("\nEstadísticos de las variables categóricas:\n")
     display(df.describe(include=['category', 'str']).T)
 
+#------------------------------------------------------------------------------------------
 
-
-# Función para mostrar gráficos de bigotes de las columnas numéricas
+# -------------Función para mostrar gráficos de bigotes de las columnas numéricas-------------
 def boxplots(df):
     """Función que grafica todas las columnas numéricas de un DataFrame.
 
@@ -69,9 +123,9 @@ def boxplots(df):
         plt.title(col)
         plt.show()
 
+#------------------------------------------------------------------------------------------
 
-
-# Función para mostrar gráficos de barras de columnas categóricas
+# -------------Función para mostrar gráficos de barras de columnas categóricas-------------
 def graficos_categoricos(df, rotar_columnas=None, angulo=45):
     """Función que grafica todas las columnas categóricas de un DataFrame.
     
@@ -101,8 +155,9 @@ def graficos_categoricos(df, rotar_columnas=None, angulo=45):
         
         plt.show()
 
+#------------------------------------------------------------------------------------------
 
-
+# -------------Función para mostrar gráficos de caja y bigotes de la variable objetivo vs variable numérica-------------
 def number_vs_target(df, target):
     col_num = df.select_dtypes(include='number').columns 
     
@@ -113,8 +168,9 @@ def number_vs_target(df, target):
         plt.title(f"{col} vs {target}")
         plt.show()
 
+#------------------------------------------------------------------------------------------
 
-
+# -------------Función para mostrar gráficosde la variable objetivo vs variable categórica-------------
 def category_vs_target(df, target):
 
      col_cat = df.select_dtypes(include=['category', 'str'])
