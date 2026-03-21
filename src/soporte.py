@@ -170,30 +170,61 @@ def number_vs_target(df, target):
 
 #------------------------------------------------------------------------------------------
 
-# -------------Función para mostrar gráficosde la variable objetivo vs variable categórica-------------
-def category_vs_target(df, target):
+# -------------Función parael porcentaje de conversión de variables categóricas-------------
+def tasa_conversion_cat(df, target):
 
-     col_cat = df.select_dtypes(include=['category', 'str'])
+    col_cat = df.select_dtypes(include=['category', 'str']).columns
 
-     for col in col_cat:
-          if col == target: 
-               continue
-          # Contamos los valores de cada categoría solo para 'yes'
-          yes_counts = df[df[target]=='yes'][col].value_counts()
-          # Ordenamos las categorías de mayor a menor según 'yes'
-          order_categories = yes_counts.index.tolist()
-     
-          # Ajustamos las gráficas al número de categorías
-          num_categories = df[col].nunique()
-          width = max(4, num_categories)
-          height = 2
-          plt.figure(figsize=(width, height))
+    for col in col_cat:
+        if col == target:
+            continue
 
-          # Definimos un palette personalizado 
-          palette_custom = {'no': 'darkgray', 'yes': 'darkmagenta'}
+        print(f'Variable: {col}')
+        
+        conversion_rate = df.groupby(col)[target].apply(lambda x: (x == 'yes').mean().round(4)*100) 
+        conversion_rate = conversion_rate.sort_values(ascending=False)
+        
+        print(conversion_rate)
+        print('-'*50)
 
-          # Creamos los gráficos 
-          sns.countplot(x=col, hue=target, data=df, palette=palette_custom, order=order_categories)
-          plt.xticks(rotation=45)
-          plt.title(f"{col} vs {target}")
-          plt.show()
+#------------------------------------------------------------------------------------------
+
+# -------------Función para mostrar gráficos de la tasa de conversión de variables categóricas-------------
+def grafs_conversion_cat(df, target, rotar_columnas=None, angulo=45):
+    """Función que grafica la tasa de conversión de cada categoría de las variables categóricas.
+
+    Args:
+        df: DataFrame
+        rotar_columnas: lista de columnas cuyo eje X se debe rotar
+        angulo: ángulo de rotación para esas columnas (45 por defecto)
+    """
+
+    # Seleccionamos todas las columnas categóricas
+    col_cat = df.select_dtypes(include=['category', 'str'])
+
+    for col in col_cat:
+        if col == target:
+            continue
+        
+        # Función de la tasa de conversión
+        conversion_rate = df.groupby(col)[target].apply(lambda x: (x == 'yes').mean()*100).sort_values(ascending=False)
+        
+        # Ajustamos las gráficas al número de categorías
+        num_categories = df[col].nunique()
+        width = max(4, num_categories)
+        height = 2
+        plt.figure(figsize=(width, height))
+        
+        conversion_rate.plot(kind='bar', color='darkmagenta')
+        plt.title(f'Tasa de Conversión por {col}')
+        plt.ylabel('Tasa de Conversión (%)')
+        plt.xlabel(col)
+        
+        # Rotar solo las columnas indicadas
+        if rotar_columnas and col in rotar_columnas:
+            plt.xticks(rotation=angulo, ha='right')
+        else:
+            plt.xticks(rotation=0, ha='center') 
+        
+        # Mostrar las gráficas
+        plt.show()
