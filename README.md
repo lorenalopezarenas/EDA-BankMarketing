@@ -1,7 +1,7 @@
 
-# <span style="color:darkmagenta">PROYECTO EDA - BANK MARKETING</span>
+# PROYECTO EDA - BANK MARKETING
 
-## <span style="color:gray">**Objetivo del proyecto** 🚀</span>
+## **Objetivo del proyecto** 🚀
 
 El objetivo de este proyecto es realizar un análisis exploratorio de datos (EDA) sobre un conjunto de datos relacionado con campañas de marketing telefónico realizadas por una institución bancaria portuguesa, con el fin de comprender el comportamiento de los clientes y detectar patrones que puedan influir en la suscripción de un depósito a plazo.
 
@@ -9,7 +9,7 @@ Para ello, se utilizarán Python y la biblioteca Pandas para realizar la transfo
 
 ---
 
-## <span style="color:gray">**Fuentes de datos** 📂</span>
+## **Fuentes de datos** 📂
 
 Para la realización de este proyecto se han utilizado dos conjuntos de datos relacionados con el comportamiento y perfil de clientes:
 
@@ -49,7 +49,7 @@ Este dataset complementa la información del primero, permitiendo analizar con m
 
 ---
 
-## <span style="color:gray">**Estructura del Proyecto** 🗂️</span>
+## **Estructura del Proyecto** 🗂️
 
 ├── data/ # Datos crudos y procesados
 
@@ -61,7 +61,7 @@ Este dataset complementa la información del primero, permitiendo analizar con m
 
 ---
 
-## <span style="color:gray">**Instalación y requisitos** 🛠️</span>
+## **Instalación y requisitos** 🛠️
 
 Este proyecto usa Python Python 3.14.0 y requiere las siguientes bibliotecas:
 - pandas
@@ -71,7 +71,7 @@ Este proyecto usa Python Python 3.14.0 y requiere las siguientes bibliotecas:
 
 ---
 
-## <span style="color:gray">**Resultados y conclusiones** 📊</span>
+## **Resultados y conclusiones** 📊
 
 - Las variables macroeconómicas (`employment_variation_rate` y `euribor_3m_rate`) y el historial de campañas (`previous_campaign_outcome`) son los principales factores que influyen en la suscripción.
 
@@ -83,6 +83,6 @@ Este proyecto usa Python Python 3.14.0 y requiere las siguientes bibliotecas:
   
 ---
 
-## <span style="color:gray">**Autor** ✒️</span>
+## **Autor** ✒️
  
 Lorena López Arenas
