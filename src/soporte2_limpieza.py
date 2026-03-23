@@ -2,6 +2,8 @@
 import pandas as pd 
 from IPython.display import display
 
+# ------------------------------FUNCIONES------------------------------
+
 # -------------Función para estandarizar nombres de columnas-------------
 def estandar_columns(df):
     """Función que estandariza los nombres de las columnas de un DataFrame dado:

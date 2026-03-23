@@ -7,7 +7,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 
-
+# ------------------------------FUNCIONES------------------------------
 
 # -------------Función para un análisis de columnas-------------
 def columnas_df(df):
