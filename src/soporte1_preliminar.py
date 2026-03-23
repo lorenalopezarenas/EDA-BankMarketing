@@ -44,15 +44,13 @@ def eda_preliminar(df):
     print('\n\n\033[1m❌ Detección de nulos\033[0m\n')
     nulos = df.isnull().sum()
     if nulos.any() > 0:
-        print(f"El número de valores nulos de cada columna es: \n\n{nulos[nulos > 0]}\n")
-        
+        print(f"El número de valores nulos de cada columna es: \n\n{nulos[nulos > 0]}\n")    
     else:
         print('No hay nulos')
 
     nulos_porcentaje = df.isnull().sum() / (df.shape[0])*100
     if nulos_porcentaje.any() > 0:
         print(f"El porcentaje de valores nulos de cada columna es: \n\n{nulos_porcentaje[nulos_porcentaje > 0].round(2)}")
-      
     else:
        pass
     print('\n\n------------------------------------------------------------------------')

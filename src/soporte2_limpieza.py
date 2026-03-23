@@ -44,6 +44,12 @@ def minus (df, cols):
 
 # -------------Función para pasar sacar los datos únicos de columnas-------------
 def datos_unicos(df, cols):
+    """Función que muestra los datos únicos de las columnas dadas de un DataFram
+
+    Args:
+        df: DataFrame
+        cols: columnas a analizar
+    """
     for col in cols:
         print(f'\n\nLos datos únicos de la varible {col} son:\n\n {df[col].unique()}\n')
         print('\n-----------------------------------------------------------------')
@@ -65,19 +71,45 @@ def reemplazar (df, cols, x, y):
 
 #------------------------------------------------------------------------------------------
 
+# -------------Función para rellenar nulos de columnas categóricas-------------
 def rellenar_nulos_cat(df, cols, x):
+    """Función que sirve para rellenar los nulos de unas columnas dadas por la categoría indicada.
+
+    Args:
+        df: DataFrame
+        cols: columnas en las que rellenar los nulos
+        x: categoría con la que rellenar (ej: "unknown")
+    """
     for col in cols:
        df[col] = df[col].fillna(x) 
 
+#------------------------------------------------------------------------------------------
+
+# -------------Función para rellenar nulos de columnas numéricas-------------
 def rellenar_nulos_num(df, cols):
+    """Función que sirve para rellenar los nulos de unas columnas dadas por la media.
+
+    Args:
+        df: DataFrame
+        cols: columnas en las que rellenar los nulos
+    """
     for col in cols:
        df[col] = df[col].fillna(df[col].mean()) 
 
+#------------------------------------------------------------------------------------------
+
+# -------------Función para rellenar nulos con la moda-------------
 def rellenar_nulos_moda(df, cols):
+    """Función que sirve para rellenar los nulos de unas columnas dadas por la moda.
+
+    Args:
+        df: DataFrame
+        cols: columnas en las que rellenar los nulos
+    """
     for col in cols:
         df[col] = df[col].fillna(df[col].mode()[0])
 
-
+#------------------------------------------------------------------------------------------
 
 # -------------Función para un análisis rápido-------------
 def analisis_rapido (df, n=3):
