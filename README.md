@@ -55,7 +55,7 @@ Este dataset complementa la información del primero, permitiendo analizar con m
 
 ├── notebooks/ # Notebooks de Jupyter con el análisis
 
-├── src/ # Funciones
+├── src/ # Archivo de soporte
 
 ├── README.md # Descripción del proyecto
 
