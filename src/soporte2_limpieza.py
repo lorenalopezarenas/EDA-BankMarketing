@@ -45,8 +45,8 @@ def minus (df, cols):
 # -------------Función para pasar sacar los datos únicos de columnas-------------
 def datos_unicos(df, cols):
     for col in cols:
-        print(f'Los datos únicos de la varible {col} son:\n {df[col].unique()}\n')
-        print('-----------------------------------------------------------------')
+        print(f'\n\nLos datos únicos de la varible {col} son:\n\n {df[col].unique()}\n')
+        print('\n-----------------------------------------------------------------')
 
 #------------------------------------------------------------------------------------------
 
@@ -89,11 +89,11 @@ def analisis_rapido (df, n=3):
     """
     print(f'\n\nLas {n} primeras filas del Dataframe son:\n')
     display(df.head(n))
-    print('-----------------------------------------------------------')
+    print('\n-----------------------------------------------------------')
 
     print(f'\nLa información básica del Dataframe es la siguiente:\n')
     df.info()
-    print('-----------------------------------------------------------')
+    print('\n-----------------------------------------------------------')
 
     print(f'\nEl número de nulos por columna del Dataframe es:\n')
     display(df.isnull().sum())
