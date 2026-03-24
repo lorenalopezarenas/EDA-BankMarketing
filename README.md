@@ -59,6 +59,8 @@ Este dataset complementa la información del primero, permitiendo analizar con m
 
 ├── README.md # Descripción del proyecto
 
+├── requirements.txt # Librerías del proyecto
+
 ---
 
 ## **Instalación y requisitos** 🛠️
